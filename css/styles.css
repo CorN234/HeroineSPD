@@ -14,5 +14,23 @@ select {
   height: 50px;
   width: 220px;
   border-radius: 6px;
-  border: 1px solid #aaa;
+  border: none;
+  background-color: #f0f0f0;
+  color: #333;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+button {
+  padding: 12px 24px;
+  font-size: 1.2em;
+  border-radius: 6px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
