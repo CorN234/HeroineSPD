@@ -131,8 +131,7 @@
       image.alt = `Personnage ${i + 1}`;
 
       const select = createSelect(`character${i}`, characterGroups[i]);
-
-      select.addEventerListener("change", calculateTotal);
+      select.addEventListener("change", calculateTotal);
 
       div.appendChild(image);
       div.appendChild(select);
