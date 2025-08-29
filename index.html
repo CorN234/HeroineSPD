@@ -34,9 +34,84 @@
   </style>
 </head>
 <body>
+  
+ <div style="text-align: right; margin-bottom: 20px;">
+  <label for="languageSelect">Language / Langue :</label>
+  <select id="languageSelect">
+    <option value="en">English</option>
+    <option value="fr">Français</option>
+  </select>
+</div>
 
-  <h1>Heroine SPD Calculator</h1>
-   <h4>All you have to do is enter : <br>
+  <script>
+  const translations = {
+    en: {
+      title: "Heroine SPD Calculator",
+      instructions: "All you have to do is enter: <br>• The heroine progression you're aiming for <br>• The respective conversion rate at the end",
+      totalSPD: "Total SPD :",
+      percentageLabel: "Conversion Rate:",
+      group1: [
+        "Locked 🔒", "Unlocked 🔓", "Advancement +1", "Advancement +2", "Advancement +3", "Advancement +4", "Advancement +5"
+      ],
+      group2: [
+        "Locked 🔒", "Unlocked 🔓", "Advancement +1", "Advancement +2", "Advancement +3", "Advancement +4", "Advancement +5"
+      ],
+      group3: [
+        "Locked 🔒", "Unlocked 🔓", "Advancement +1", "Advancement +2", "Advancement +3", "Advancement +4", "Advancement +5"
+      ]
+    },
+    fr: {
+      title: "Calculateur de VIT qu'apportent les assistantes",
+      instructions: "Tout ce que vous avez à faire c'est d'entrer : <br>• La progression des assistantes (votre objectif) <br>• Le taux de conversion à la fin",
+      totalSPD: "VIT Total :",
+      percentageLabel: "Taux de Conversion :",
+      group1: [
+        "Verrouillé 🔒", "Déverrouillé 🔓", "Amélioration +1", "Amélioration +2", "Amélioration +3", "Amélioration +4", "Amélioration +5"
+      ],
+      group2: [
+        "Verrouillé 🔒", "Déverrouillé 🔓", "Amélioration +1", "Amélioration +2", "Amélioration +3", "Amélioration +4", "Amélioration +5"
+      ],
+      group3: [
+        "Verrouillé 🔒", "Déverrouillé 🔓", "Amélioration +1", "Amélioration +2", "Amélioration +3", "Amélioration +4", "Amélioration +5"
+      ]
+    }
+  };
+
+  let currentLang = localStorage.getItem("lang") || "en";
+</script>
+<script>
+  function applyLanguage(lang) {
+    const t = translations[lang];
+
+    document.getElementById("pageTitle").textContent = t.title;
+    document.getElementById("instructionsText").innerHTML = t.instructions;
+    document.querySelector("label[for='percentage']").textContent = t.percentageLabel;
+
+    // Update select options for each character group
+    document.querySelectorAll(".character select").forEach((select, index) => {
+      const group = index < 6 ? t.group1 : (index < 10 ? t.group2 : t.group3);
+      select.querySelectorAll("option").forEach((option, i) => {
+        option.textContent = group[i];
+      });
+    });
+
+    document.getElementById("resultLabel").textContent = t.totalSPD;
+  }
+
+  document.getElementById("languageSelect").value = currentLang;
+  document.getElementById("languageSelect").addEventListener("change", function () {
+    currentLang = this.value;
+    localStorage.setItem("lang", currentLang);
+    applyLanguage(currentLang);
+  });
+
+  window.addEventListener("DOMContentLoaded", () => {
+    applyLanguage(currentLang);
+  });
+</script>
+
+  <h1 id="pageTitle">Heroine SPD Calculator</h1>
+   <h4 id="instructionsText">All you have to do is enter : <br>
     • The heroine progression you're aiming for <br>
     • The respective conversion rate at the end </h4>
 
@@ -56,7 +131,7 @@
 
   </form>
 
-  <h2>Total SPD : <span id="result">0</span></h2>
+  <h2><span id="resultLabel"></span> <span id="result">0</span>Total SPD : <span id="result">0</span></h2>
 
   <script>
 
