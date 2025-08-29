@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Heroine SPD Calculator</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    .character {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    .character img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      margin-right: 20px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+    label {
+      font-weight: bold;
+      margin-right: 10px;
+      width: 150px;
+    }
+    select {
+      padding: 5px;
+      font-size: 1em;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Heroine SPD Calculator</h1>
+   <h4>All you have to do is enter : <br>
+    • The heroine progression you're aiming for <br>
+    • The respective conversion rate at the end <br>
+   Lastly make sure to click on "Result" once that's done <br>
+   And there you have the amount of SPD they'll get you</h4>
+
+  <form id="characterForm">
+    <div id="characters"></div>
+
+    <div style="margin-top: 20px;">
+      <img src ="IMG_3253.jpeg" height="30" width="230" alt="Pourcentage" class="percentage-image" />
+      <select id="percentage" required>
+        <option value="0.2">20%</option>
+        <option value="0.25">25%</option>
+        <option value="0.3">30%</option>
+        <option value="0.35">35%</option>
+        <option value="0.4">40%</option>
+      </select>
+    </div>
+
+    <br>
+    <button type="button" onclick="calculateTotal()">Click here when done</button>
+  </form>
+
+  <h3>Total SPD : <span id="result">0</span></h3>
+
+  <script>
+
+    const group1Options = [
+      { value: 0, label: "Locked 🔒" },
+      { value: 10, label: "Unlocked 🔓" },
+      { value: 20, label: "Advancement +1" },
+      { value: 30, label: "Advancement +2" },
+      { value: 40, label: "Advancement +3" },
+      { value: 50, label: "Advancement +4" },
+      { value: 60, label: "Advancement +5" }
+    ];
+
+    const group2Options = [
+      { value: 0, label: "Locked 🔒" },
+      { value: 5, label: "Unlocked 🔓" },
+      { value: 10, label: "Advancement +1" },
+      { value: 15, label: "Advancement +2" },
+      { value: 20, label: "Advancement +3" },
+      { value: 25, label: "Advancement +4" },
+      { value: 30, label: "Advancement +5" }
+    ];
+
+    const group3Options = [
+      { value: 0, label: "Locked 🔒" },
+      { value: 3, label: "Unlocked 🔓" },
+      { value: 4, label: "Advancement +1" },
+      { value: 5, label: "Advancement +2" },
+      { value: 7, label: "Advancement +3" },
+      { value: 10, label: "Advancement +4" },
+      { value: 15, label: "Advancement +5" }
+    ];
+
+    const characterGroups = [
+      group1Options, group1Options, group1Options, group1Options, group1Options, group1Options,
+      group2Options, group2Options, group2Options, group2Options,
+      group3Options, group3Options, group3Options, group3Options
+    ];
+
+    const imageSources = [
+      "IMG_1130.jpeg", "IMG_1126.jpeg", "IMG_1128.jpeg",
+      "IMG_1124.jpeg", "IMG_1134.jpeg", "IMG_1132.jpeg",
+      "IMG_1138.jpeg", "IMG_1142.jpeg", "IMG_1136.jpeg",
+      "IMG_1140.jpeg", "IMG_1146.jpeg", "IMG_1144.jpeg",
+      "IMG_1148.jpeg", "IMG_1150.jpeg"
+    ];
+
+    const charactersDiv = document.getElementById("characters");
+
+    function createSelect(name, optionsArray) {
+      const select = document.createElement("select");
+      select.name = name;
+      select.required = true;
+
+      optionsArray.forEach(obj => {
+        const option = document.createElement("option");
+        option.value = obj.value;
+        option.textContent = obj.label;
+        select.appendChild(option);
+      });
+
+      return select;
+    }
+
+    for (let i = 0; i < 14; i++) {
+      const div = document.createElement("div");
+      div.className = "character";
+
+      const image = document.createElement("img");
+      image.src = imageSources[i];
+      image.alt = `Personnage ${i + 1}`;
+
+      const select = createSelect(`character${i}`, characterGroups[i]);
+
+      div.appendChild(image);
+      div.appendChild(select);
+
+      charactersDiv.appendChild(div);
+    }
+
+    function calculateTotal() {
+      const percentage = parseFloat(document.getElementById("percentage").value);
+      const selects = document.querySelectorAll(".character select");
+      let total = 0;
+
+      selects.forEach(select => {
+        const value = parseFloat(select.value);
+        total += Math.ceil(value * percentage);
+      });
+
+      document.getElementById("result").textContent = total;
+    }
+  </script>
+
+</body>
+</html>

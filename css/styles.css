@@ -1,0 +1,10 @@
+.percentage-image {
+    position: relative;
+    top: 10px;
+}
+body {
+    font-family: Tahoma, sans-serif;
+    margin: 20px;
+    background-color: #363434 ;
+    color:gainsboro
+}
