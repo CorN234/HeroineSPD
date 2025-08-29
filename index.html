@@ -38,9 +38,7 @@
   <h1>Heroine SPD Calculator</h1>
    <h4>All you have to do is enter : <br>
     • The heroine progression you're aiming for <br>
-    • The respective conversion rate at the end <br>
-   Lastly make sure to click on "Result" once that's done <br>
-   And there you have the amount of SPD they'll get you</h4>
+    • The respective conversion rate at the end </h4>
 
   <form id="characterForm">
     <div id="characters"></div>
@@ -56,8 +54,6 @@
       </select>
     </div>
 
-    <br>
-    <button type="button" onclick="calculateTotal()">Result</button>
   </form>
 
   <h2>Total SPD : <span id="result">0</span></h2>
@@ -109,6 +105,7 @@
     ];
 
     const charactersDiv = document.getElementById("characters");
+    document.getElementById("percentage").addEventListener("calculateTotal);
 
     function createSelect(name, optionsArray) {
       const select = document.createElement("select");
@@ -134,6 +131,8 @@
       image.alt = `Personnage ${i + 1}`;
 
       const select = createSelect(`character${i}`, characterGroups[i]);
+
+      select.addEventerListener("change", calculateTotal);
 
       div.appendChild(image);
       div.appendChild(select);
