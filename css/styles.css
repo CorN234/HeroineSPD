@@ -24,13 +24,3 @@ select {
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
-button {
-  padding: 12px 24px;
-  font-size: 1.2em;
-  border-radius: 6px;
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
