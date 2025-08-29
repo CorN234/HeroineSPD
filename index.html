@@ -88,6 +88,25 @@
         width: 100%;
       }
     }
+    .character-wrapper {
+      border: 3px solid #999;
+      border-radius: 16px;
+      padding: 30px;
+      background-color: #2f2d2d;
+      max-width: 860px;
+      margin: 0 auto;
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.05);
+      transition: box-shadow 0.3s ease;
+    }
+
+    .character-wrapper:hover {
+      box-shadow: 0 0 25px rgba(255, 255, 255, 0.1);
+    }
+
+    .percentage-container {
+      margin-top: 40px;
+      text-align: center;
+    }
   </style>
 </head>
 <body>
@@ -108,6 +127,7 @@
   </h4>
 
   <form id="characterForm">
+   <div class="character-wrapper">
     <div id="characters"></div>
 
     <div style="margin-top: 20px; text-align: center;">
@@ -121,6 +141,7 @@
         <option value="0.4">40%</option>
       </select>
     </div>
+   </div>
   </form>
 <div style="height: 50px;"></div>
   <h2><span id="resultLabel">Total SPD :</span> <span id="result">0</span></h2>
