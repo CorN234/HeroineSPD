@@ -206,7 +206,6 @@
     document.getElementById("instructionsText").innerHTML = t.instructions;
     document.querySelector("label[for='percentage']").textContent = t.percentageLabel;
 
-    // Update select options for each character group
     document.querySelectorAll(".character select").forEach((select, index) => {
       const group = index < 6 ? t.group1 : (index < 10 ? t.group2 : t.group3);
       select.querySelectorAll("option").forEach((option, i) => {
