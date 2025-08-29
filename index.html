@@ -79,36 +79,6 @@
 
   let currentLang = localStorage.getItem("lang") || "en";
 </script>
-<script>
-  function applyLanguage(lang) {
-    const t = translations[lang];
-
-    document.getElementById("pageTitle").textContent = t.title;
-    document.getElementById("instructionsText").innerHTML = t.instructions;
-    document.querySelector("label[for='percentage']").textContent = t.percentageLabel;
-
-    // Update select options for each character group
-    document.querySelectorAll(".character select").forEach((select, index) => {
-      const group = index < 6 ? t.group1 : (index < 10 ? t.group2 : t.group3);
-      select.querySelectorAll("option").forEach((option, i) => {
-        option.textContent = group[i];
-      });
-    });
-
-    document.getElementById("resultLabel").textContent = t.totalSPD;
-  }
-
-  document.getElementById("languageSelect").value = currentLang;
-  document.getElementById("languageSelect").addEventListener("change", function () {
-    currentLang = this.value;
-    localStorage.setItem("lang", currentLang);
-    applyLanguage(currentLang);
-  });
-
-  window.addEventListener("DOMContentLoaded", () => {
-    applyLanguage(currentLang);
-  });
-</script>
 
   <h1 id="pageTitle">Heroine SPD Calculator</h1>
    <h4 id="instructionsText">All you have to do is enter : <br>
@@ -228,5 +198,39 @@
     }
   </script>
 
+  <script>
+  function applyLanguage(lang) {
+    const t = translations[lang];
+
+    document.getElementById("pageTitle").textContent = t.title;
+    document.getElementById("instructionsText").innerHTML = t.instructions;
+    document.querySelector("label[for='percentage']").textContent = t.percentageLabel;
+
+    // Update select options for each character group
+    document.querySelectorAll(".character select").forEach((select, index) => {
+      const group = index < 6 ? t.group1 : (index < 10 ? t.group2 : t.group3);
+      select.querySelectorAll("option").forEach((option, i) => {
+        option.textContent = group[i];
+      });
+    });
+    
+    const resultLabel = document.getElementById("resultLabel");
+    if (resultLabel) {
+      resultLabel.textContent = t.totalSPD;
+    }
+  }
+    
+  document.getElementById("languageSelect").addEventListener("change", function () {
+    const newLang = this.value;
+    localStorage.setItem("lang", newLang);
+    applyLanguage(newLang);
+  });
+
+  window.addEventListener("DOMContentLoaded", () => {
+    const savedLang = localStorage.getItem("lang") || "en";
+    document.getElementById("languageSelect").value = savedLang;
+    applyLanguage(savedLang);
+  });
+</script>
 </body>
 </html>
