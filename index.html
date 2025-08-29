@@ -246,8 +246,7 @@
       document.getElementById("pageTitle").textContent = t.title;
       document.getElementById("instructionsText").innerHTML = t.instructions;
       document.getElementById("resultLabel").textContent = t.totalSPD;
-      document.querySelector("label[for='languageSelect']").textContent = "Language / Langue :";
-      document.querySelector("label[for='percentage']")?.remove(); // prevent duplication
+      document.querySelector("label[for='percentage']")?.remove();
 
       document.querySelectorAll(".character select").forEach(select => {
         const groupNum = parseInt(select.dataset.group);
